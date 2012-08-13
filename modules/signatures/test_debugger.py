@@ -17,7 +17,8 @@ class TestDebugger(Signature):
 
     def run(self, results):
         for p in results["behavior"]["processes"]:
-            for c in p["calls"]:
-                if c["api"].find("IsDebuggerPresent") >= 0:
-                    return True       
+            if p["calls"]:
+                for c in p["calls"]:
+                    if c["api"].find("IsDebuggerPresent") >= 0:
+                        return True       
         return False
